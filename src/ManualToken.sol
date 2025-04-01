@@ -25,8 +25,9 @@ contract ManualToken {
         uint256 _value
     ) public returns (bool success) {
         uint256 previousBalances = balanceOf(msg.sender) + balanceOf(_to);
-        balanceOf(msg.sender) -= _value;
-        balanceOf(_to) += _value;
+        s_balance[msg.sender] -= _value;
+        s_balance[_to] += _value;
         require(balanceOf(msg.sender) + balanceOf(_to) == previousBalances);
+        return true;
     }
 }
